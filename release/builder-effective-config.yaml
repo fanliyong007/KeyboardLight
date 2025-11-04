@@ -1,0 +1,22 @@
+directories:
+  output: release
+  buildResources: build
+appId: com.keyboardlight.app
+productName: keyboardLight
+files:
+  - filter:
+      - src/**
+      - index.js
+      - preload.js
+      - package.json
+      - '!node_modules/.cache/**'
+asar: true
+asarUnpack:
+  - '**/*.node'
+  - node_modules/**/build/**
+compression: store
+publish: null
+win:
+  target: portable
+  artifactName: keyboardLight-${version}-portable.exe
+electronVersion: 38.3.0
