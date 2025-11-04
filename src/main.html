@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Layout</title>
+    <style>
+
+        html, body { height: 100%; margin: 0; }
+        body {
+            background: rgba(28,28,32,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #content {
+            position: relative;
+            height: calc(100% - 34px);
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            padding: 8px;
+        }
+        #keyboard { transform-origin: center center; display: inline-block; }
+         /* 置顶按钮样式 */
+         .always-on-top-toggle {
+             position: fixed;
+             top: 12px;
+             right: 12px;
+             background: #3b82f6;
+             color: white;
+             border: none;
+             border-radius: 6px;
+             padding: 6px 10px;
+             font-size: 12px;
+             cursor: pointer;
+         }
+         .always-on-top-toggle.on { background: #ef4444; }
+
+         /* 双字符键帽样式 */
+         .key.dual { position: relative; }
+         .key.dual .primary { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 600; }
+         .key.dual .secondary { position: absolute; top: 6px; right: 6px; font-size: 12px; opacity: 0.8; }
+        .key {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 4px;
+            text-align: center;
+            line-height: 60px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .key.active {
+            background-color: #ffeb3b; /* vivid yellow for visibility */
+            border: 3px solid #ff9800; /* strong border to stand out */
+            box-shadow: 0 0 12px rgba(255, 152, 0, 0.6); /* Enhanced shadow for active state */
+        }
+
+        .space {
+            width: 300px; /* Adjusted width for space bar */
+        }
+        .key.backspace { width: 120px; }
+         .key.capslock { width: 120px; }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px; /* Adjusted row spacing */
+        }
+
+        /* 调整键盘布局的顶部间距 */
+        #keyboard {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="keyboard">
+        <!-- Function keys -->
+        <div class="row">
+            <div class="key">Esc</div>
+            <div class="key">F1</div>
+            <div class="key">F2</div>
+            <div class="key">F3</div>
+            <div class="key">F4</div>
+            <div class="key">F5</div>
+            <div class="key">F6</div>
+            <div class="key">F7</div>
+            <div class="key">F8</div>
+            <div class="key">F9</div>
+            <div class="key">F10</div>
+            <div class="key">F11</div>
+            <div class="key">F12</div>
+        </div>
+
+        <!-- Number row -->
+        <div class="row">
+            <div class="key dual"><span class="secondary">~</span><span class="primary">`</span></div>
+            <div class="key dual"><span class="secondary">!</span><span class="primary">1</span></div>
+            <div class="key dual"><span class="secondary">@</span><span class="primary">2</span></div>
+            <div class="key dual"><span class="secondary">#</span><span class="primary">3</span></div>
+            <div class="key dual"><span class="secondary">$</span><span class="primary">4</span></div>
+            <div class="key dual"><span class="secondary">%</span><span class="primary">5</span></div>
+            <div class="key dual"><span class="secondary">^</span><span class="primary">6</span></div>
+            <div class="key dual"><span class="secondary">&</span><span class="primary">7</span></div>
+            <div class="key dual"><span class="secondary">*</span><span class="primary">8</span></div>
+            <div class="key dual"><span class="secondary">(</span><span class="primary">9</span></div>
+            <div class="key dual"><span class="secondary">)</span><span class="primary">0</span></div>
+            <div class="key dual"><span class="secondary">_</span><span class="primary">-</span></div>
+            <div class="key dual"><span class="secondary">+</span><span class="primary">=</span></div>
+            <div class="key backspace">Backspace</div>
+        </div>
+
+        <!-- QWERTY row -->
+        <div class="row">
+            <div class="key">Tab</div>
+            <div class="key">Q</div>
+            <div class="key">W</div>
+            <div class="key">E</div>
+            <div class="key">R</div>
+            <div class="key">T</div>
+            <div class="key">Y</div>
+            <div class="key">U</div>
+            <div class="key">I</div>
+            <div class="key">O</div>
+            <div class="key">P</div>
+            <div class="key dual"><span class="secondary">{</span><span class="primary">[</span></div>
+            <div class="key dual"><span class="secondary">}</span><span class="primary">]</span></div>
+            <div class="key dual"><span class="secondary">|</span><span class="primary">\\</span></div>
+        </div>
+
+        <!-- ASDF row -->
+        <div class="row">
+            <div class="key capslock">CapsLock</div>
+            <div class="key">A</div>
+            <div class="key">S</div>
+            <div class="key">D</div>
+            <div class="key">F</div>
+            <div class="key">G</div>
+            <div class="key">H</div>
+            <div class="key">J</div>
+            <div class="key">K</div>
+            <div class="key">L</div>
+            <div class="key dual"><span class="secondary">:</span><span class="primary">;</span></div>
+            <div class="key dual"><span class="secondary">&quot;</span><span class="primary">&#39;</span></div>
+            <div class="key">Enter</div>
+        </div>
+
+        <!-- ZXCV row -->
+        <div class="row">
+            <div class="key">Shift</div>
+            <div class="key">Z</div>
+            <div class="key">X</div>
+            <div class="key">C</div>
+            <div class="key">V</div>
+            <div class="key">B</div>
+            <div class="key">N</div>
+            <div class="key">M</div>
+            <div class="key dual"><span class="secondary">&lt;</span><span class="primary">,</span></div>
+            <div class="key dual"><span class="secondary">&gt;</span><span class="primary">.</span></div>
+            <div class="key dual"><span class="secondary">?</span><span class="primary">/</span></div>
+            <div class="key">Shift</div>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="row">
+            <div class="key">Ctrl</div>
+            <div class="key">Win</div>
+            <div class="key">Alt</div>
+            <div class="key space">Space</div>
+            <div class="key">Alt</div>
+            <div class="key">Win</div>
+            <div class="key">Menu</div>
+            <div class="key">Ctrl</div>
+        </div>
+    </div>
+
+    <script>
+        // 渲染层准备好后发送调试日志到主进程
+        try { window.electronAPI?.debugSend('renderer-ready'); } catch {}
+
+        console.log('[renderer] bridge exists:', !!window.electronAPI);
+        console.log('[renderer] onGlobalKeydown exists:', !!window.electronAPI?.onGlobalKeydown);
+
+        // 统一按键标签映射
+        function normalizeKeyLabel(key) {
+            const map = {
+                'Escape': 'Esc',
+                'Control': 'Ctrl',
+                'Meta': 'Win',
+                'Super': 'Win',
+                'ContextMenu': 'Menu'
+            };
+            if (key === ' ') return 'Space';
+            return map[key] || key;
+        }
+
+        // 更健壮的事件到标签解析：优先使用实际字符（支持 Shift 后符号）
+        function eventToLabel(event) {
+            const { key, code } = event;
+            const normKey = normalizeKeyLabel(key);
+            // 若是单个可打印字符，直接使用（例如 ! @ # 等）
+            if (normKey && normKey.length === 1) return normKey;
+            // 字母：KeyA -> A
+            if (code && /^Key[A-Z]$/.test(code)) return code.slice(3);
+            // 数字：Digit1 -> 1
+            if (code && /^Digit\d$/.test(code)) return code.slice(5);
+            // 常见基础符号（无 Shift 时）
+            const codeMap = {
+                Backquote: '`',
+                Minus: '-',
+                Equal: '=',
+                BracketLeft: '[',
+                BracketRight: ']',
+                Backslash: '\\',
+                Semicolon: ';',
+                Quote: '\'',
+                Comma: ',',
+                Period: '.',
+                Slash: '/'
+            };
+            if (code && codeMap[code]) return codeMap[code];
+            // 其他功能键直接返回规范化名
+            return normKey;
+        }
+
+        function clearActive() {
+            const activeKeys = document.querySelectorAll('.key.active');
+            activeKeys.forEach(key => {
+                key.classList.remove('active');
+            });
+        }
+
+        function markKeyOnClick(event) {
+            clearActive();
+            const clickedKey = event.target;
+            if (clickedKey.classList.contains('key')) {
+                clickedKey.classList.add('active');
+            }
+        }
+
+        function markKeyByLabel(label) {
+            const shiftedToBase = {
+                '!': '1', '@': '2', '#': '3', '$': '4', '%': '5', '^': '6', '&': '7', '*': '8', '(': '9', ')': '0',
+                '_': '-', '+': '=', '~': '`', '{': '[', '}': ']', '|': '\\', ':': ';', '"': '\'', '<': ',', '>': '.', '?': '/'
+            };
+            const labelsToTry = [label];
+            if (shiftedToBase[label]) labelsToTry.push(shiftedToBase[label]);
+
+            clearActive();
+            const keyElements = document.querySelectorAll('.key');
+            let matched = 0;
+            keyElements.forEach(keyElement => {
+                const p = keyElement.querySelector('.primary')?.textContent.trim();
+                const s = keyElement.querySelector('.secondary')?.textContent.trim();
+                const t = (!p && !s) ? keyElement.textContent.trim() : null;
+                const candidates = [p, s, t].filter(Boolean).map(x => x.toLowerCase());
+                const anyMatch = labelsToTry.some(l => candidates.includes(l.toLowerCase()));
+                const special = labelsToTry.some(l => (l === 'space' && candidates.includes('space')) || (l === 'enter' && candidates.includes('enter')) || (l === 'backspace' && candidates.includes('backspace')));
+                if (anyMatch || special) {
+                    matched++;
+                    keyElement.classList.add('active');
+                }
+            });
+            try { window.electronAPI?.debugSend(`matched_count:${matched}`); } catch {}
+        }
+
+        document.addEventListener('keydown', (event) => {
+            const label = eventToLabel(event);
+            console.log('[renderer] local keydown:', event.key, event.code, '->', label);
+            markKeyByLabel(label);
+        }, { passive: true });
+
+
+        if (window.electronAPI && window.electronAPI.onGlobalKeydown) {
+            window.electronAPI.onGlobalKeydown(({ key }) => {
+                const label = normalizeKeyLabel(key);
+                console.log('[renderer] global keydown:', key, '->', label);
+                try { window.electronAPI?.debugSend(`recv:${key}->${label}`); } catch {}
+                markKeyByLabel(label);
+            });
+            try { window.electronAPI?.debugSend('onGlobalKeydown-attached'); } catch {}
+        }
+        const keyboard = document.getElementById('keyboard');
+        keyboard.addEventListener('click', markKeyOnClick);
+
+        function applyScale() {
+            const kb = document.getElementById('keyboard');
+            const availW = window.innerWidth - 16;
+            const availH = window.innerHeight - 16;
+            if (!kb.dataset.baseW || !kb.dataset.baseH) {
+                kb.dataset.baseW = kb.offsetWidth;
+                kb.dataset.baseH = kb.offsetHeight;
+            }
+            const baseW = parseFloat(kb.dataset.baseW);
+            const baseH = parseFloat(kb.dataset.baseH);
+            const scale = Math.min(availW / baseW, availH / baseH);
+            kb.style.transform = `scale(${scale})`;
+        }
+        window.addEventListener('resize', applyScale, { passive: true });
+        document.addEventListener('DOMContentLoaded', applyScale, { passive: true });
+        applyScale();
+
+        console.log('Keyboard overlay loaded');
+    </script>
+
+
+</body>
+</html>

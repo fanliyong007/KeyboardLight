@@ -1,0 +1,47 @@
+{
+  "name": "keyboardlight",
+  "version": "1.0.0",
+  "description": "a tool can show key which you press",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "electron-builder --win",
+    "dist:portable": "electron-builder --win portable"
+  },
+  "dependencies": {
+    "uiohook-napi": "^1.5.4"
+  },
+  "devDependencies": {
+    "electron": "^38.3.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.keyboardlight.app",
+    "productName": "keyboardLight",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**",
+      "index.js",
+      "preload.js",
+      "package.json",
+      "!node_modules/.cache/**"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/*.node",
+      "node_modules/**/build/**"
+    ],
+    "compression": "store",
+    "publish": null,
+    "win": {
+      "target": "portable",
+      "artifactName": "keyboardLight-${version}-portable.exe"
+    }
+  }
+}
